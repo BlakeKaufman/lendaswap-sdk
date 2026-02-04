@@ -32,8 +32,16 @@ export type {
 } from "./api/client.js";
 // API client
 export { createApiClient } from "./api/client.js";
+// Arkade VHTLC query utilities
+export {
+  type GetVhtlcAmountsParams,
+  getVhtlcAmounts,
+  type VhtlcAmounts,
+} from "./arkade.js";
 export type {
   ArkadeClaimOptions,
+  BitcoinToArkadeSwapOptions,
+  BitcoinToArkadeSwapResult,
   BitcoinToEvmSwapOptions,
   BitcoinToEvmSwapResponse,
   BitcoinToEvmSwapResult,
@@ -49,6 +57,7 @@ export type {
   EvmToLightningSwapOptions,
   EvmToLightningSwapResult,
   OnchainRefundOptions,
+  RefundOptions,
   RefundResult,
 } from "./client.js";
 // Main client
@@ -62,6 +71,19 @@ export {
   encodeApproveCallData,
   encodeCreateSwapCallData,
 } from "./evm/index.js";
+export {
+  calculateSourceAmount,
+  calculateTargetAmount,
+  computeExchangeRate,
+  selectTierRate,
+} from "./price-calculations";
+export {
+  PriceFeedService,
+  type PriceTiers,
+  type PriceUpdateCallback,
+  type PriceUpdateMessage,
+  type TradingPairPrices,
+} from "./price-feed";
 // Redeem module (Arkade claim)
 export {
   type ArkadeClaimParams,
@@ -99,3 +121,20 @@ export {
   inMemoryStorageFactory,
   SWAP_STORAGE_VERSION,
 } from "./storage/index.js";
+// Token helpers and constants
+export {
+  BTC_ARKADE,
+  BTC_LIGHTNING,
+  BTC_ONCHAIN,
+  isArbitrumToken,
+  isArkade,
+  isBtc,
+  isBtcOnchain,
+  isEthereumToken,
+  isEvmToken,
+  isLightning,
+  isPolygonToken,
+  type NetworkName,
+  networkName,
+} from "./tokens.js";
+export { getUsdPrices } from "./usd-price";

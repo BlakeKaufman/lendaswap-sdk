@@ -17,7 +17,7 @@
  * ```
  */
 
-import type { TokenIdString } from "./api.js";
+import type { TokenId } from "./api/client.js";
 
 /**
  * CoinGecko API base URL
@@ -75,7 +75,7 @@ interface CoinGeckoSimplePriceResponse {
  */
 export interface UsdPriceResult {
   /** Token ID */
-  tokenId: TokenIdString;
+  tokenId: TokenId;
   /** USD price (null if not found) */
   usdPrice: number | null;
   /** 24h change percentage (optional) */
@@ -96,7 +96,7 @@ export interface GetUsdPriceOptions {
  * @param tokenId - The SDK token ID
  * @returns CoinGecko coin ID or null if not supported
  */
-export function getCoinGeckoId(tokenId: TokenIdString): string | null {
+export function getCoinGeckoId(tokenId: TokenId): string | null {
   return TOKEN_TO_COINGECKO[tokenId.toLowerCase()] ?? null;
 }
 
@@ -116,7 +116,7 @@ export function getCoinGeckoId(tokenId: TokenIdString): string | null {
  * ```
  */
 export async function getUsdPrice(
-  tokenId: TokenIdString,
+  tokenId: TokenId,
   options?: GetUsdPriceOptions,
 ): Promise<number | null> {
   const result = await getUsdPrices([tokenId], options);
@@ -139,7 +139,7 @@ export async function getUsdPrice(
  * ```
  */
 export async function getUsdPrices(
-  tokenIds: TokenIdString[],
+  tokenIds: TokenId[],
   options?: GetUsdPriceOptions,
 ): Promise<UsdPriceResult[]> {
   // Map token IDs to CoinGecko IDs, filtering out unsupported tokens
@@ -220,6 +220,6 @@ export async function getUsdPrices(
  *
  * @returns Array of supported token IDs
  */
-export function getSupportedTokensForUsdPrice(): TokenIdString[] {
-  return Object.keys(TOKEN_TO_COINGECKO) as TokenIdString[];
+export function getSupportedTokensForUsdPrice(): TokenId[] {
+  return Object.keys(TOKEN_TO_COINGECKO) as TokenId[];
 }

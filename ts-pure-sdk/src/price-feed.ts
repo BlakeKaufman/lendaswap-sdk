@@ -20,7 +20,7 @@
  * ```
  */
 
-import type { TokenIdString } from "./api";
+import type { TokenId } from "./api/client";
 
 /**
  * Price tiers for different quote asset amounts.
@@ -43,8 +43,8 @@ export interface PriceTiers {
 export interface TradingPairPrices {
   /** Trading pair identifier, e.g., "USDC_POL-BTC" or "USDT0_POL-BTC" */
   pair: string;
-  source: TokenIdString;
-  target: TokenIdString;
+  source: TokenId;
+  target: TokenId;
   /** Price tiers for this pair */
   tiers: PriceTiers;
 }
